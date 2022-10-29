@@ -1,0 +1,18 @@
+@import "./reset.scss";
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+.container_post {
+  max-width: 1140px;
+  margin: 0 auto;
+  flex-basis: 80%;
+}
+.container_sideBar {
+  flex-basis: 20%;
+}
+
+.main_content {
+  display: flex;
+}
