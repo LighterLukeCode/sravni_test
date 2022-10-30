@@ -1,12 +1,10 @@
 @import "./reset.scss";
 
 .container {
-  max-width: 1140px;
+  max-width: 700px;
   margin: 0 auto;
 }
 .container_post {
-  max-width: 1140px;
-  margin: 0 auto;
   flex-basis: 80%;
 }
 .container_sideBar {

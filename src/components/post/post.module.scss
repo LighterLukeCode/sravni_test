@@ -1,6 +1,7 @@
 .post {
   margin-top: 12px;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin-right: 30px;
 }
 
 .info {
@@ -8,6 +9,9 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
+}
+.avatar {
+  border-radius: 25px;
 }
 .info_author {
   display: flex;
@@ -45,7 +49,36 @@
 .post_footer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .tags_list {
   display: flex;
+}
+.tag_item {
+  border: 1px solid #ddd;
+  color: #aaa;
+  border-radius: 25px;
+  padding: 5px 5px;
+  font-size: 10px;
+  margin-right: 3px;
+}
+.favorite {
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  background-color: transparent;
+  border-color: #5cb85c;
+  color: #5cb85c;
+  border-radius: 10px;
+  border: 1px solid #5cb85c;
+  gap: 3px;
+  cursor: pointer;
+  &:hover {
+    color: #fff;
+    background-color: #5cb85c;
+  }
+}
+.heart {
+  width: 14px;
+  height: 14px;
 }

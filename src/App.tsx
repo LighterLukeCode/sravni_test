@@ -1,24 +1,21 @@
 import React from "react";
-import Banner from "./components/banner";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/header";
-import Post from "./components/post/Post";
-import Sort from "./components/sort/Sort";
-import Tags from "./components/tags/Tags";
+import Home from "./pages/Home";
+import SingIn from "./pages/signIn";
+import SingUp from "./pages/signUp";
 import "./scss/app.scss";
 
 function App() {
   return (
-    <div className="App">
+    <BrowserRouter>
       <Header />
-      <Banner />
-      <Sort />
-      <div className="container">
-        <div className="main_content">
-          <Post />
-          <Tags />
-        </div>
-      </div>
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<SingIn />} />
+        <Route path="/register" element={<SingUp />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

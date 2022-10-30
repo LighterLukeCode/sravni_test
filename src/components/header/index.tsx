@@ -1,28 +1,28 @@
 import styles from "./header.module.scss";
-
+import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <header className="header">
       <div className="container">
         <div className={styles.content}>
-          <a href="#" className={styles.logo}>
+          <Link to="/" className={styles.logo}>
             conduit
-          </a>
+          </Link>
           <ul className={styles.nav_bar}>
             <li className={styles.nav_item}>
-              <a href="#" className={styles.nav_link}>
+              <Link to="/" className={styles.nav_link}>
                 Home
-              </a>
+              </Link>
             </li>
             <li className={styles.nav_item}>
-              <a href="#" className={styles.nav_link}>
+              <Link to="/login" className={styles.nav_link}>
                 Sign in
-              </a>
+              </Link>
             </li>
             <li className={styles.nav_item}>
-              <a href="#" className={styles.nav_link}>
+              <Link to="/register" className={styles.nav_link}>
                 Sign up
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
