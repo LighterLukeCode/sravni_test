@@ -1,42 +1,44 @@
 import Sort from "../sort/Sort";
 import styles from "./post.module.scss";
 import heart from "./../../assets/heart.png";
+import { useAppSelector } from "../../redux/hooks";
+import { Post as IPost } from "../../interfaces/Post";
 
-const Post = () => {
+interface Props {
+  post: IPost;
+}
+const Post = ({ post }: Props) => {
   return (
     <div className="container_post">
-      <Sort />
       <div className={styles.post}>
         <div className={styles.info}>
           <div className={styles.info_author}>
-            <a href="#" >
-              <img className={styles.avatar} src="https://api.realworld.io/images/demo-avatar.png" alt="avatar" />
+            <a href="#">
+              <img className={styles.avatar} src={post.author.image} alt="avatar" />
             </a>
             <div className={styles.author}>
               <a href="#" className={styles.name}>
-                gfdgfd gfdgdfg
+                {post.author.username}
               </a>
-              <span className={styles.date}>October 9, 2022</span>
+              <span className={styles.date}>{post.createdAt.replace("T", " ").slice(0, 16)}</span>
             </div>
           </div>
           <button className={styles.favorite}>
             <img className={styles.heart} src={heart} alt="heart" />
-            44
+            {post.favoritesCount}
           </button>
         </div>
         <a href="#" className="preview">
-          <h3 className={styles.title}>
-            gfdgdfgdfgd lorem 100gfdgdfgdfgd lorem 100gfdgdfgdfgd lorem 100gfdgdfgdfgd lorem 100gfdgdfgdfgd lorem
-            100gfdgdfgdfgd lorem 100gfdgdfgdfgd lorem 100gfdgdfgdfgd lorem 100gfdgdfgdfgd lorem 100gfdgdfgdfgd lorem 100
-          </h3>
-          <p className={styles.text}>gkfdlgkfk;lgk kgldfl;gl;d k lgl;dfkgl dkgl;d l;kg dfgl; dkg;dkfg;ldk ;lkg df;kg</p>
+          <h3 className={styles.title}>{post.title}</h3>
+          <p className={styles.description}>{post.description}</p>
           <div className={styles.post_footer}>
             <span className={styles.more}>Read more...</span>
             <ul className={styles.tags_list}>
-              <li className={styles.tag_item}>gfdg</li>
-              <li className={styles.tag_item}>gfdggfdggfdggfd</li>
-              <li className={styles.tag_item}>gfdggfdg</li>
-              <li className={styles.tag_item}>gfdggfdggfdggfdg</li>
+              {post.tagList.map((tag, i) => (
+                <li key={i} className={styles.tag_item}>
+                  {tag}
+                </li>
+              ))}
             </ul>
           </div>
         </a>

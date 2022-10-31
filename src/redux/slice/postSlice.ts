@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Post } from "../../interfaces/Post";
 import axios from "../../axios";
+import { Articles } from "../../interfaces/Articles";
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   const { data } = await axios.get("/articles");
@@ -14,12 +15,12 @@ enum Status {
 }
 
 interface PostState {
-  items: Post[];
+  items: Articles;
   status: Status;
 }
 
 const initialState: PostState = {
-  items: [],
+  items: { articles: [], articlesCount: 0 },
   status: Status.LOADING,
 };
 
@@ -30,7 +31,7 @@ const postSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(fetchPosts.pending, state => {
       state.status = Status.LOADING;
-      state.items = [];
+      state.items = { articles: [], articlesCount: 0 };
     });
     builder.addCase(fetchPosts.fulfilled, (state, action) => {
       state.items = action.payload;
@@ -38,7 +39,7 @@ const postSlice = createSlice({
     });
     builder.addCase(fetchPosts.rejected, state => {
       state.status = Status.ERROR;
-      state.items = [];
+      state.items = { articles: [], articlesCount: 0 };
     });
   },
 });

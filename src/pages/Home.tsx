@@ -5,24 +5,30 @@ import Post from "../components/post/Post";
 import Tags from "../components/tags/Tags";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { fetchPosts } from "../redux/slice/postSlice";
+import { fetchTags } from "../redux/slice/tagSlice";
+import Sort from "../components/sort/Sort";
 
 const Home = () => {
   const dispatch = useAppDispatch();
-  const { items } = useAppSelector(state => state.postSlice);
+  const { articles } = useAppSelector(state => state.postSlice.items);
+  console.log(articles);
 
-  const getPost = async () => {
-    dispatch(fetchPosts());
-  };
   React.useEffect(() => {
-    getPost();
+    dispatch(fetchTags());
+    dispatch(fetchPosts());
   }, []);
 
   return (
     <>
       <Banner />
+      <Sort />
       <div className="container">
         <div className="main_content">
-          <Post />
+          <div className="test">
+            {articles.map((post, i) => (
+              <Post key={i} post={post} />
+            ))}
+          </div>
           <Tags />
         </div>
       </div>

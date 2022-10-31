@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import postSlice from "./slice/postSlice";
+import tagSlice from "./slice/tagSlice";
 
 export const store = configureStore({
   reducer: {
     postSlice,
+    tagSlice,
   },
 });
 
