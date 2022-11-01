@@ -1,10 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Post } from "../../interfaces/Post";
 import axios from "../../axios";
-import { Articles } from "../../interfaces/Articles";
+import { Article } from "../../interfaces/Article";
 
-export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
-  const { data } = await axios.get("/articles");
+export const fetchPost = createAsyncThunk("post/fetchPost", async (slug: string) => {
+  const { data } = await axios.get(`/articles/${slug}`);
   return data;
 });
 
@@ -15,31 +14,31 @@ enum Status {
 }
 
 interface PostState {
-  items: Articles;
+  item: Article;
   status: Status;
 }
 
 const initialState: PostState = {
-  items: { articles: [], articlesCount: 0 },
+  item: { article: null },
   status: Status.LOADING,
 };
 
 const postSlice = createSlice({
-  name: "posts",
+  name: "post",
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(fetchPosts.pending, state => {
+    builder.addCase(fetchPost.pending, state => {
       state.status = Status.LOADING;
-      state.items = { articles: [], articlesCount: 0 };
+      state.item = { article: null };
     });
-    builder.addCase(fetchPosts.fulfilled, (state, action) => {
-      state.items = action.payload;
+    builder.addCase(fetchPost.fulfilled, (state, action) => {
+      state.item = action.payload;
       state.status = Status.SUCCESS;
     });
-    builder.addCase(fetchPosts.rejected, state => {
+    builder.addCase(fetchPost.rejected, state => {
       state.status = Status.ERROR;
-      state.items = { articles: [], articlesCount: 0 };
+      state.item = { article: null };
     });
   },
 });

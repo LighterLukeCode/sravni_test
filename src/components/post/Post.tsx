@@ -3,6 +3,7 @@ import styles from "./post.module.scss";
 import heart from "./../../assets/heart.png";
 import { useAppSelector } from "../../redux/hooks";
 import { Post as IPost } from "../../interfaces/Post";
+import { Link } from "react-router-dom";
 
 interface Props {
   post: IPost;
@@ -28,20 +29,26 @@ const Post = ({ post }: Props) => {
             {post.favoritesCount}
           </button>
         </div>
-        <a href="#" className="preview">
+
+        <Link to={`/article/${post.slug}`}>
           <h3 className={styles.title}>{post.title}</h3>
-          <p className={styles.description}>{post.description}</p>
-          <div className={styles.post_footer}>
+        </Link>
+        <Link to={`/article/${post.slug}`}>
+          <p className={styles.description}>{post.description}</p>{" "}
+        </Link>
+        <div className={styles.post_footer}>
+          <Link to={`/article/${post.slug}`}>
+            {" "}
             <span className={styles.more}>Read more...</span>
-            <ul className={styles.tags_list}>
-              {post.tagList.map((tag, i) => (
-                <li key={i} className={styles.tag_item}>
-                  {tag}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </a>
+          </Link>
+          <ul className={styles.tags_list}>
+            {post.tagList.map((tag, i) => (
+              <li key={i} className={styles.tag_item}>
+                {tag}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

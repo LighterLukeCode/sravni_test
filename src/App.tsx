@@ -15,7 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<SingIn />} />
         <Route path="/register" element={<SingUp />} />
-        <Route path="/post" element={<FullPost />} />
+        <Route path="/article/:slug" element={<FullPost />} />
       </Routes>
     </BrowserRouter>
   );
