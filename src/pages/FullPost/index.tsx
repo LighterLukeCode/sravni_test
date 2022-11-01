@@ -12,12 +12,11 @@ const FullPost = () => {
   const dispatch = useAppDispatch();
   const { slug } = useParams();
   const { article } = useAppSelector(state => state.postSlice.item);
-  const comments = useAppSelector(state => state.commentsSlice.items);
-  console.log(comments);
+  const { comments } = useAppSelector(state => state.commentsSlice.items);
 
   React.useEffect(() => {
-    dispatch(fetchPost(slug as string));
     dispatch(fetchComments(slug as string));
+    dispatch(fetchPost(slug as string));
   }, []);
 
   if (!article) return <div />;
@@ -101,29 +100,24 @@ const FullPost = () => {
             </p>
           </div>
           <div className={styles.comments_container}>
-            {() => {
-              console.log(comments);
-              return <div />;
-            }}
-            {/* {!!comments &&
-              comments.map(comment => (
-                <div className={styles.comments}>
-                  <div className={styles.comments_content}>
-                    <p className={styles.comments_text}>{comment.body}</p>
-                  </div>
-                  <div className={styles.comments_footer}>
-                    <div className={styles.info_third}>
-                      <a href="#">
-                        <img className={styles.third_avatar} src={comment.author.image} alt="avatar" />
-                      </a>
-                      <a href="#" className={styles.third_name}>
-                        {comment.author.username}
-                      </a>
-                      <span className={styles.third_date}>{comment.createdAt.replace("T", " ").slice(0, 16)}</span>
-                    </div>
+            {comments.map(comment => (
+              <div className={styles.comments}>
+                <div className={styles.comments_content}>
+                  <p className={styles.comments_text}>{comment.body}</p>
+                </div>
+                <div className={styles.comments_footer}>
+                  <div className={styles.info_third}>
+                    <a href="#">
+                      <img className={styles.third_avatar} src={comment.author.image} alt="avatar" />
+                    </a>
+                    <a href="#" className={styles.third_name}>
+                      {comment.author.username}
+                    </a>
+                    <span className={styles.third_date}>{comment.createdAt.replace("T", " ").slice(0, 16)}</span>
                   </div>
                 </div>
-              ))} */}
+              </div>
+            ))}
           </div>
         </div>
       </div>

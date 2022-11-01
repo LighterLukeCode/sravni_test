@@ -15,23 +15,23 @@ enum Status {
 }
 
 interface CommentState {
-  items: Comment[];
+  items: Comments;
   status: Status;
 }
 
 const initialState: CommentState = {
-  items: [],
+  items: { comments: [] },
   status: Status.LOADING,
 };
 
 const commentsSlice = createSlice({
-  name: "post",
+  name: "comments",
   initialState,
   reducers: {},
   extraReducers: builder => {
     builder.addCase(fetchComments.pending, state => {
       state.status = Status.LOADING;
-      state.items = [];
+      state.items = { comments: [] };
     });
     builder.addCase(fetchComments.fulfilled, (state, action) => {
       state.items = action.payload;
@@ -39,7 +39,7 @@ const commentsSlice = createSlice({
     });
     builder.addCase(fetchComments.rejected, state => {
       state.status = Status.ERROR;
-      state.items = [];
+      state.items = { comments: [] };
     });
   },
 });
