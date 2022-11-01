@@ -101,7 +101,7 @@ const FullPost = () => {
           </div>
           <div className={styles.comments_container}>
             {comments.map(comment => (
-              <div className={styles.comments}>
+              <div key={comment.id} className={styles.comments}>
                 <div className={styles.comments_content}>
                   <p className={styles.comments_text}>{comment.body}</p>
                 </div>
